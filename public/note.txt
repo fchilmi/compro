@@ -1,0 +1,10 @@
+relasi tabel gambar dan produk      v
+fungsi CRD produk              v
+paragraf pada detail perlu diperbaiki
+route users create belum bener
+tampilan edit user perlu diganti modal aja  v
+desain tampilan dashboard v
+sweet alert semua
+desain profil peruhsaan
+simple code update gambar profil
+fungsi update produk view pisah v Cek lagi gais 
