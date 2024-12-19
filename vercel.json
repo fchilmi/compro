@@ -16,7 +16,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://greatkingsby.com",
+        "APP_URL": "https://tesfix.vercel.app/",
         "APP_KEY": "base64:/naUVYczTzkj2rE3W0ZniOMFN3umNDXwZ2xHKUZYbMg=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",

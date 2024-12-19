@@ -6,12 +6,6 @@
             <div class="mx-auto max-w-screen-xl 2xl:px-0 bg-gray-700 shadow-2xl rounded-xl">
                 <img class="w-full rounded-t-xl" src="/img/{{ $profil->GambarPerusahaan1 }}" alt="" />
                 <div class="mb-6 max-w-full space-y-6 md:mb-12 px-12 lg:mx-auto text-lg">
-                    <p class="font-normal text-gray-200 dark:text-gray-400 text-justify pt-10">
-                        <b>{{ $profil->namaPerusahaan }}</b><br>
-                        Alamat Toko bisa dikunjungi di {{ $profil->alamatToko }} <br>
-                        Alamat Gudang bisa dikunjungi di {{ $profil->alamatGudang }} <br><br>
-                    </p>
-
                     <p class="font-normal text-gray-200 dark:text-gray-400 text-justify pb-10">
                         {!! nl2br(e($profil->deskripsiPerusahaan)) !!}
                     </p>
