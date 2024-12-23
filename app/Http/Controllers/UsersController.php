@@ -49,12 +49,11 @@ class UsersController extends Controller
             'name.required' => 'Username Harus Diisi',
             'password.required' => 'Password Harus Diisi',
         ]);
-        $get = [
-            'name' => $request->name,
-            'password' => $request->password
-        ];
 
-        if (Auth::attempt($get)) {
+        $user = User::whereRaw('BINARY `name` = ?', [$request->name])->first();
+
+        if ($user && Hash::check($request->password, $user->password)) {
+            Auth::login($user);
             return redirect()->intended('user/dashboard');
         } else {
             return redirect()->back()->withErrors('Username atau Password Tidak Sesuai')->withInput();

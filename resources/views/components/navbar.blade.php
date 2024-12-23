@@ -25,7 +25,6 @@
                             {{-- <x-nav-link href='/logout2'>Logout</x-nav-link>
                             <x-nav-link href='#'>{{ Auth::user()->name }}</x-nav-link> --}}
 
-
                             <!-- Dropdown menu -->
                             <div id="dropdownNavbar"
                                 class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-35 dark:bg-gray-700 dark:divide-gray-600">
@@ -54,8 +53,6 @@
             </div>
             <div class="hidden md:block">
                 <div class="ml-4 flex items-center md:ml-6">
-
-
 
                     @auth<!-- Profile dropdown -->
                         <div class="relative ml-3">
@@ -119,7 +116,7 @@
 
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3 bg-gray-700 opacity-90">
+        <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3 bg-gray-700 opacity-90 z-10">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <x-nav-link href='/user/dashboard' :active="request()->is('user/dashboard')">
                 <p class="text-white">Produk</p>
@@ -132,14 +129,14 @@
                 <button id="dropdownNavbarLink"
                     data-dropdown-toggle="dropdownNavbar2"data-dropdown-placement="right-start"
                     class="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:underline text-white hover:bg-gray-700 hover:text-opacity-80 md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 md:w-auto dark:text-white md:dark:hover:text-white dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Menu
-                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 10 6">
+                    <svg class="w-2.5 h-2.5 ms-2.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 4 4 4-4" />
                     </svg></button>
                 <!-- Dropdown menu -->
                 <div id="dropdownNavbar2"
-                    class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-35 dark:bg-gray-700 dark:divide-gray-600">
+                    class="z-30 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-35 dark:bg-gray-700 dark:divide-gray-600">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="doubleDropdownButton">
                         <li>
                             <a href="/users"
@@ -158,14 +155,8 @@
                         </li>
                     </ul>
                 </div>
-            @endauth
-        </div>
-        <div class="border-t border-gray-700  bg-gray-700 opacity-70 pb-3">
-            @auth
-                <div class="flex items-center px-5">
-                    <div class="">
-                        <div class="text-base font-medium leading-none text-white">{{ Auth::user()->name }}</div>
-                    </div>
+                <x-nav-link href='#' class="flex items-center px-4">
+                    <p class="text-white">{{ Auth::user()->name }}</p>
                     <div class="flex-shrink-0 ml-2">
                         <svg class="w-[32px] h-[32px] text-white dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -175,13 +166,10 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
-
-                </div>
-                <div class="px-2">
-                    <a href="/logout2"
-                        class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white">Log
-                        out</a>
-                </div>
+                </x-nav-link>
+                <x-nav-link href='/logout2'>
+                    <p class="text-white">Log Out</p>
+                </x-nav-link>
             @endauth
         </div>
     </div>

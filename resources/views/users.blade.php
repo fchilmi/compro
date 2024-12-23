@@ -2,10 +2,10 @@
     <x-slot:title>Data Users</x-slot:title>
     <x-slot:titles>Data Users</x-slot:titles>
 
-    <section class="py-8 px-8 md:py-16 dark:bg-gray-900 antialiased">
-        <div class="w-full bg-black px-8 py-8 rounded-xl">
+    <section class="py-8 px-8 md:py-16 md:justify-items-center dark:bg-gray-900 antialiased">
+        <div class="md:w-8/12 bg-black px-8 py-8 rounded-xl">
             <button id="AddUserButton" data-modal-target="AddUserModal" data-modal-toggle="AddUserModal"
-                class="item-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                class="md:item-right sm:justify-items-center px-4 py-2 mb-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                 Tambah Data</button>
 
             <!-- Main modal add user -->
@@ -40,25 +40,26 @@
                                     <label for="nama"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                                     <input type="text" name="nama" id="nama" placeholder="Nama Lengkap"
+                                        required
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div>
                                     <label for="email"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                    <input type="email" placeholder="Email" name="email" id="email"
+                                    <input type="email" placeholder="Email" name="email" id="email" required
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div>
                                     <label for="password1"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password1" id="password1" value=""
+                                    <input type="password" name="password1" id="password1" value="" required
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div>
                                     <label for="password2"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konfirmasi
                                         Password</label>
-                                    <input type="password" name="password2" id="password2" value=""
+                                    <input type="password" name="password2" id="password2" value="" required
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
 
@@ -74,23 +75,23 @@
                 </div>
             </div>
 
-            <table class="my-4 w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-100 uppercase bg-gray-700">
+            <table id="example" class="stripe hover text-left"
+                style="width:100%; padding-top: 1em; padding-bottom: 1em;">
+                <thead class="text-xs text-gray-200 uppercase bg-gray-700">
                     <tr>
                         <th scope="col" class="px-4 py-3">No</th>
                         <th scope="col" class="px-4 py-3">Nama</th>
                         <th scope="col" class="px-4 py-3">Email</th>
-                        <th scope="col" class="px-4 py-3">Proses</th>
+                        <th scope="col" class="py-3">Proses</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $data)
                         <tr class="border-b dark:border-gray-700">
-                            <th scope="row"
-                                class="px-4 py-3 font-medium text-gray-100 whitespace-nowrap dark:text-white">
+                            <th scope="row" class="px-4 py-3 font-medium whitespace-nowrap dark:text-white">
                                 {{ $loop->iteration }}</th>
-                            <td class="px-4 py-3 text-gray-100">{{ $data->name }}</td>
-                            <td class="px-4 py-3 text-gray-100">{{ $data->email }}</td>
+                            <td class="px-4 py-3">{{ $data->name }}</td>
+                            <td class="px-4 py-3">{{ $data->email }}</td>
                             <td class="px-4 py-3">
                                 <form class="" action="{{ route('users.destroy', $data->id) }}" method="POST">
                                     @csrf
