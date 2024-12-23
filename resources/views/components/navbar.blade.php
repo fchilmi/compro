@@ -119,7 +119,7 @@
 
     <!-- Mobile menu, show/hide based on menu state. -->
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3 bg-gray-700 opacity-70">
+        <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3 bg-gray-700 opacity-90">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <x-nav-link href='/user/dashboard' :active="request()->is('user/dashboard')">
                 <p class="text-white">Produk</p>
