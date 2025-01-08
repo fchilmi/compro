@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
 class UsersController extends Controller
@@ -22,17 +23,31 @@ class UsersController extends Controller
     {
         return view('user/create');
     }
+
+    // Add a new user
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|unique:users,name',
+            'email' => 'required|email|unique:users,email',
+            'password1' => 'required',
+            'password2' => 'required|same:password1',
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            // Redirect back with input and error messages
+            return redirect()->route('users')->with('gagal', 'User gagal ditambahkan, periksa ulang data');
+        }
         User::create([
-            'name' => $request->name,
-            'username' => 'user-' . $request->name,
+            'name' => $request->nama,
+            'username' => 'user-' . $request->nama,
             'email' => $request->email,
             'email_verified_at' => now(),
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password1),
             'remember_token' => Str::random(10),
         ]);
-        return redirect()->route('users');
+        return redirect()->route('users')->with('berhasil', 'User berhasil ditambahkan');
     }
 
     public function login()
@@ -71,78 +86,56 @@ class UsersController extends Controller
         //
     }
 
-    public function edit(string $id)
-    {
-        $data['cari'] = User::find($id);
-        return view('edit', $data);
-    }
+
 
     /**
-     * Update the specified resource in storage.
+     * Update a user
      */
     public function update(Request $request, string $id)
     {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'email' => 'required|email',
+            'password2' => 'same:password1',
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            // Redirect back with input and error messages
+            return redirect()->route('users')->with('gagal', 'User gagal diupdate, periksa ulang data');
+        }
         $password = $request->password;
         if (empty($password)) {
             $cari = User::find($id);
             $cari->update([
-                'name' => $request->name,
+                'name' => $request->nama,
                 'email' => $request->email,
             ]);
         } else {
             $cari = User::find($id);
             $cari->update([
-                'name' => $request->name,
+                'name' => $request->nama,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make($request->password1),
             ]);
         }
-        return redirect()->route('users');
+        return redirect()->route('users')->with('berhasil', 'User berhasil diupdate');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete a user
      */
     public function destroy(string $id)
     {
         $cari = User::find($id);
         // dd($cari);
         $cari->delete();
-        return redirect()->route('users');
+        return redirect()->route('users')->with('berhasil', 'User berhasil dihapus');
     }
-
-    // 'name' => $request->name,
-    //         'username' => 'user-' . $request->name,
-    //         'email' => $request->email,
-
-    public function beran()
-    {
-        $post = User::all();
-        // dd($post->name);
-        return view('posts', $post);
-    }
-    public function cobaUser(Request $request)
-    {
-        // dd(User::all());
-        // $data = produk::all();
-        // if ($request->ajax()) {
-        //     return DataTables::of($data)
-        //         ->addColumn('nama', function ($data) {
-        //             return $data->namaProduk;
-        //         })
-        //         ->addColumn('harga', function ($data) {
-        //             return $data->hargaProduk;
-        //         })
-        //         ->addColumn('deskripsi', function ($data) {
-        //             return Str::of($data->deskripsiProduk)->limit(50);
-        //         })
-        //         ->addColumn('action', function ($data) {
-        //             return '<a href="#" class="btn btn-primary"><i class="fas fa-pen"></i> Ubah</a>
-        //             <a data-toggle="modal" data-target="#" class="btn btn-warning"><i class="fas fa-trash"></i> Hapus</a>';
-        //         })
-        //         ->rawColumns(['foto', 'action'])
-        //         ->make(true);
-        // }
-        // return view('posts', compact('request', 'data'));
-    }
+    // public function beran()
+    // {
+    //     $post = User::all();
+    //     // dd($post->name);
+    //     return view('posts', $post);
+    // }
 }

@@ -7,6 +7,7 @@ use App\Models\Gambar;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class produkController extends Controller
@@ -47,9 +48,23 @@ class produkController extends Controller
     {
         $produk = new produk();
         $fileNames = [];
-        $namaGambarnya = Str::random(10) . $request->file('produkImg')[0]->getClientOriginalName();
         // dd($request->file('produkImg'));
 
+        $validator = Validator::make($request->all(), [
+            'produkName' => 'required|regex:/^[a-zA-Z0-9\ \-\/]+$/',
+            'produkPrice' => 'required',
+            'produkKategori' => 'required',
+            'produkDeskripsi' => 'required',
+            'produkImg.*' => 'required|mimetypes:image/jpeg,image/jpg,image/png|max:2560',
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            // Redirect back with input and error messages
+            return redirect()->route('produkHome')->with('gagal', 'Produk gagal ditambahkan, periksa ulang data');
+        }
+        // Validation passed, store the data in the database
+        $namaGambarnya = Str::random(10) . $request->file('produkImg')[0]->getClientOriginalName();
         $data = [
             'namaProduk' => $request->produkName,
             'slug' => Str::slug($request->produkName),
@@ -67,27 +82,7 @@ class produkController extends Controller
         $gambar->save();
         $file->move(public_path('uploads'), $namaGambarnya);
 
-        // dd(count($request->file('produkImg')));
-        // if (count($request->file('produkImg')) > 1) {
-        //     $awal = $request->file('produkImg')->take(1);
-        //     dd($awal);
-
-
-        //     foreach ($request->file('produkImg') as $file) {
-        //         $fileName = $namaGambarnya;
-        //         $file->move(public_path('uploads'), $fileName);
-        //         $fileNames[] = $fileName;
-        //     }
-        // }
-        // foreach ($fileNames as $fileName) {
-        //     $gambar = new Gambar();
-        //     $gambar->idProduk = $produkId;
-        //     $gambar->namaGambar = $fileName;
-        //     $gambar->save();
-        // }
-        // dd($request->file('produkImg')[1]->getClientOriginalName());
         // Proses update gambar
-
         if (count($request->file('produkImg')) == 2) {
             // Upload gambar baru
             $file1 = $request->file('produkImg')[1];
@@ -113,6 +108,18 @@ class produkController extends Controller
         // $gambar = Gambar::select('namaGambar')->where('idProduk', $id)->get();
         // $fileNames = [];
         // $coba = $request->coba;
+        $validator = Validator::make($request->all(), [
+            'produkName' => 'required|regex:/^[a-zA-Z0-9\ \-\/]+$/',
+            'produkPrice' => 'required', // Ensure price is numeric
+            'produkKategori' => 'required',
+            'produkDeskripsi' => 'required',
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            // Redirect back with input and error messages
+            return redirect()->route('produkHome')->with('gagal', 'Produk gagal diupdate, periksa ulang data');
+        }
 
         $data = [
             'namaProduk' => $request->produkName,
@@ -131,17 +138,24 @@ class produkController extends Controller
         $gambarLama = Gambar::where('idProduk', $id)->get();
         // dd($gambarLama[0]);
         // Validasi input gambar jika ada
-        $request->validate([
-            'produkImg1' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'produkImg2' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'produkImg3' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        $validGbr = Validator::make($request->all(), [
+            'produkImg1' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:2560',
+            'produkImg2' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:2560',
+            'produkImg3' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:2560'
         ]);
+
+        // Check if validation fails
+        if ($validGbr->fails()) {
+            // Redirect back with input and error messages
+            return redirect()->route('produkHome')->with('gagal', 'Produk gagal ditambahkan, periksa ulang tipe file');
+        }
 
         // Proses update gambar
         if ($request->hasFile('produkImg1')) {
             // Hapus gambar lama jika ada
             if (isset($gambarLama[0])) {
-                File::delete('uploads/' . $gambarLama[0]->namaGambar);
+                // Storage::delete(public_path('uploads') . '/' . $gambarLama[0]->namaGambar);
+                File::delete(public_path('uploads/' . $gambarLama[0]->namaGambar));
             }
             // Upload gambar baru
             $file1 = $request->file('produkImg1');
@@ -160,7 +174,8 @@ class produkController extends Controller
         if ($request->hasFile('produkImg2')) {
             // Hapus gambar lama jika ada
             if (isset($gambarLama[1])) {
-                File::delete('uploads/' . $gambarLama[1]->namaGambar);
+                // dd($gambarLama[1]->namaGambar, Storage::exists('uploads') . $gambarLama[1]->namaGambar);
+                File::delete(public_path('uploads/' . $gambarLama[1]->namaGambar));
             }
             // Upload gambar baru
             $file2 = $request->file('produkImg2');
@@ -179,7 +194,8 @@ class produkController extends Controller
         if ($request->hasFile('produkImg3')) {
             // Hapus gambar lama jika ada
             if (isset($gambarLama[2])) {
-                File::delete('uploads/' . $gambarLama[2]->namaGambar);
+                // Storage::delete(public_path('uploads') . '/' . $gambarLama[2]->namaGambar);
+                File::delete(public_path('uploads/' . $gambarLama[2]->namaGambar));
             }
             // Upload gambar baru
             $file3 = $request->file('produkImg3');
@@ -203,7 +219,7 @@ class produkController extends Controller
             ]);
         }
 
-        return redirect()->route('produkHome')->with('success', 'Produk berhasil diupdate');
+        return redirect()->route('produkHome')->with('produk', 'Produk berhasil diupdate');
     }
     public function destroy($id)
     {
@@ -221,6 +237,6 @@ class produkController extends Controller
             }
         }
         $produk->delete();
-        return redirect()->route('produkHome')->with('success', 'Produk berhasil dihapus');
+        return redirect()->route('produkHome')->with('produk', 'Produk berhasil dihapus');
     }
 }

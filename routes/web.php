@@ -31,15 +31,16 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 //USERS FITUR
 Route::get('/user/login', [UsersController::class, 'login'])->name('users.login')->middleware('guest');
 Route::get('/login', [UsersController::class, 'login'])->name('login')->middleware('guest');
+Route::get('/LOGIN', [UsersController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [UsersController::class, 'auth_login'])->middleware('guest');
 Route::post('/user/login', [UsersController::class, 'auth_login'])->middleware('guest');
 Route::post('/logout', [UsersController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/logout2', [UsersController::class, 'logout'])->name('logout2');
 //Add
-Route::get('/user/create', [UsersController::class, 'create'])->name('user.create');
-Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+Route::get('/user/create', [UsersController::class, 'create'])->name('user.create')->middleware('auth');
+Route::post('/users', [UsersController::class, 'store'])->name('users.store')->middleware('auth');
 //delete
-Route::delete('/users/{id}/destroy', [UsersController::class, 'destroy'])->name('users.destroy');
+Route::delete('/users/{id}/destroy', [UsersController::class, 'destroy'])->name('users.destroy')->middleware('auth');
 //edit update
 Route::get('/users/{id}/edit', [UsersController::class, 'edit'])->name('users.edit')->middleware('auth');
 Route::put('/users/update/{id}', [UsersController::class, 'update'])->name('users.update')->middleware('auth');

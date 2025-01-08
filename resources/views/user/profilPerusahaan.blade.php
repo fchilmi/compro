@@ -4,7 +4,31 @@
     <div class="min-h-full">
         <div class="py-12 antialiased dark:bg-gray-900 md:py-12 sm:px-8">
             <div class="mx-auto max-w-screen-xl 2xl:px-0 bg-gray-700 shadow-2xl rounded-xl">
-                <img class="w-full rounded-t-xl" src="/img/{{ $profil->GambarPerusahaan1 }}" alt="" />
+                <div id="default-carousel" class="relative w-full z-0" data-carousel="slide">
+                    <!-- Carousel wrapper -->
+                    <div class="relative h-auto overflow-hidden rounded-lg md:h-96">
+                        <!-- Item 1 -->
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="/img/{{ $profil->GambarPerusahaan1 }}"
+                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="...">
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="/img/{{ $profil->GambarPerusahaan1 }}"
+                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="...">
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="/img/{{ $profil->GambarPerusahaan1 }}"
+                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="...">
+                        </div>
+
+                    </div>
+                </div>
+                {{-- <img class="w-full rounded-t-xl" src="/img/{{ $profil->GambarPerusahaan1 }}" alt="" /> --}}
                 <div class="mb-6 max-w-full space-y-6 md:mb-12 px-12 lg:mx-auto text-lg">
                     <p class="font-normal text-gray-200 dark:text-gray-400 text-justify py-10">
                         {!! nl2br(e($profil->deskripsiPerusahaan)) !!} </p>

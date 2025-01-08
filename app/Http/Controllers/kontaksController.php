@@ -6,6 +6,7 @@ use App\Models\kontak;
 use App\Models\profil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class kontaksController extends Controller
@@ -13,6 +14,13 @@ class kontaksController extends Controller
     public function updateProfil(Request $request, string $id)
     {
         $cari = profil::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'nama_perusahaan' => 'required',
+            'alamatToko' => 'required',
+            'alamatGudang' => 'required',
+            'deskripsi' => 'required',
+        ]);
         $cari->update([
             'namaPerusahaan' => $request->nama_perusahaan,
             'alamatToko' => $request->alamatToko,
@@ -20,16 +28,20 @@ class kontaksController extends Controller
             'deskripsiPerusahaan' => $request->deskripsi,
         ]);
 
-        return redirect()->route('user/kontak');
+        return redirect()->route('profilPerusahaan')->with('sukses', 'Deskripsi berhasil diupdate');
     }
     public function updateGambar(Request $request)
     {
         $gambar = profil::first();
-        $request->validate([
-            'files1' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'files2' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'files3' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        $validator = Validator::make($request->all(), [
+            'files1' => File::image()->max(5120),
+            'files2' => File::image()->max(5120),
+            'files3' => File::image()->max(5120)
         ]);
+        if ($validator->fails()) {
+            // Redirect back with input and error messages
+            return redirect()->route('profilPerusahaan')->with('gagal', 'Data gagal diupdate, periksa ulang data');
+        }
 
         // Proses update gambar
         if ($request->hasFile('files1')) {
@@ -91,25 +103,43 @@ class kontaksController extends Controller
                 $gambar->save();
             }
         }
-        return redirect()->route('profilPerusahaan');
+        return redirect()->route('profilPerusahaan')->with('sukses', 'Gambar perusahaan berhasil diupdate');
     }
     public function addKontak(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'nomor' => 'required|unique:kontaks,nomor',
+            'email' => 'required|email',
+        ]);
+        if ($validator->fails()) {
+            // Redirect back with input and error messages
+            return redirect()->route('user/kontak')->with('gagal', 'Kontak gagal ditambahkan, periksa ulang data');
+        }
         kontak::create([
             'nama' => $request->nama,
             'nomor' => $request->nomor,
             'email' => $request->email,
         ]);
-        return redirect()->route('user/kontak');
+        return redirect()->route('user/kontak')->with('sukses', 'Kontak berhasil ditambahkan');
     }
     public function updateKontak(Request $request, string $id)
     {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required',
+            'nomor' => 'required',
+            'email' => 'required|email',
+        ]);
+        if ($validator->fails()) {
+            // Redirect back with input and error messages
+            return redirect()->route('user/kontak')->with('gagal', 'Kontak gagal diupdate, periksa ulang data');
+        }
         $data = kontak::find($id);
         $data->update([
             'nama' => $request->nama,
             'nomor' => $request->nomor,
             'email' => $request->email,
         ]);
-        return redirect()->route('user/kontak');
+        return redirect()->route('user/kontak')->with('sukses', 'Kontak berhasil diupdate');
     }
 }
