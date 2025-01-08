@@ -1,6 +1,6 @@
 <x-layout>
-    <x-slot:title>Data Produk</x-slot:title>
-    <x-slot:titles class="mb-4">Data Produk</x-slot:titles>
+    <x-slot:title>Dashboard</x-slot:title>
+    <x-slot:titles class="mb-4">Dashboard</x-slot:titles>
 
     <section class="antialiased dark:bg-gray-900 pb-10">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
@@ -98,7 +98,7 @@
                         <div style="background-color: #2b2b36"
                             class="rounded-lg border border-gray-200 p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                             <div class="h-56 w-full">
-                                <a href="/user/detail/{{ $produk->slug }}">
+                                <a href="/detail/{{ $produk->slug }}">
                                     <img class="mx-auto h-full dark:hidden" src="/uploads/{{ $produk->namaGambar }}"
                                         alt="" />
                                 </a>
@@ -107,14 +107,14 @@
                                 <div class="mb-4 flex items-center justify-between gap-4">
                                 </div>
 
-                                <a href="/user/detail/{{ $produk->slug }}"
+                                <a href="/detail/{{ $produk->slug }}"
                                     class="text-lg font-semibold leading-tight text-white hover:underline dark:text-white">
                                     {{ $produk->namaProduk }}</a>
 
                                 <div class="my-8 flex items-center justify-between gap-4">
                                     <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
                                     </p>
-                                    <a href="/user/detail/{{ $produk->slug }}"
+                                    <a href="/detail/{{ $produk->slug }}"
                                         class="inline-flex items-center rounded-lg bg-blue-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Detail
                                     </a>

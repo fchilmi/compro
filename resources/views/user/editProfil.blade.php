@@ -4,7 +4,7 @@
     <section>
         <div class="grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-2 px-8 py-6">
             <div class="py-8 px-4 h-auto max-w-full lg:py-1 rounded-lg" style="background-color: #2b2b36">
-                <form action="{{ route('updateKontak', $profil->id) }}" method="POST">
+                <form action="{{ route('updateProfil', $profil->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
@@ -13,7 +13,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-100 dark:text-white">Nama
                                 Perusahaan</label>
                             <input type="text" name="nama_perusahaan" id="nama_perusahaan"
-                                value="{{ $profil->namaPerusahaan }}"
+                                value="{{ $profil->namaPerusahaan }}" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                         <div>
@@ -21,6 +21,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-100 dark:text-white">Alamat
                                 Toko</label>
                             <input type="text" name="alamatToko" id="alamatToko" value="{{ $profil->alamatToko }}"
+                                required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Ex. Apple">
                         </div>
@@ -29,14 +30,14 @@
                                 class="block mb-2 text-sm font-medium text-gray-100 dark:text-white">Alamat
                                 Gudang</label>
                             <input type="text" value="{{ $profil->alamatGudang }}" name="alamatGudang"
-                                id="alamatGudang"
+                                id="alamatGudang" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="deskripsi"
                                 class="block mb-2 text-sm font-medium text-gray-100 dark:text-white">Deskripsi</label>
-                            <textarea id="deskripsi" name="deskripsi" rows="8"
+                            <textarea id="deskripsi" name="deskripsi" rows="8" required
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $profil->deskripsiPerusahaan }}</textarea>
                         </div>
                     </div>
@@ -114,11 +115,48 @@
                     <div class="flex justify-end">
                         <button
                             type="submit"class="text-white bg-blue-800 hover:text-gray-700 border border-blue-700 hover:bg-blue-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            Update Profil
+                            Update Gambar
                         </button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+    @if (session('sukses'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: "{{ session('sukses') }}"
+            });
+        </script>
+    @elseif (session('gagal'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "warning",
+                title: "{{ session('gagal') }}"
+            });
+        </script>
+    @endif
 </x-layout>

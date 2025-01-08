@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Great King Surabaya menjual segala Filter Cooling Air Tower yang efisien dan ramah lingkungan. Kami fokus pada pembuatan dan instalasi sistem pendingin udara yang dirancang untuk memberikan performa maksimal dengan biaya operasional yang lebih rendah. Meskipun masih dalam tahap pengembangan, kami didukung oleh tim yang berpengalaman dan berkomitmen untuk menawarkan produk berkualitas tinggi dan layanan terbaik, serta siap memenuhi kebutuhan cooling system di berbagai sektor industri.">
+    <meta name="keywords" content="great king, Filter Cooling, Great King Surabaya">
+    <meta name="author" content="Great King">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
