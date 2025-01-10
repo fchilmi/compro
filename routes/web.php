@@ -31,7 +31,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 //USERS FITUR
 Route::get('/user/login', [UsersController::class, 'login'])->name('users.login')->middleware('guest');
 Route::get('/login', [UsersController::class, 'login'])->name('login')->middleware('guest');
-Route::get('/LOGIN', [UsersController::class, 'login'])->name('login')->middleware('guest');
+Route::get('/LOGIN', [UsersController::class, 'login'])->middleware('guest');
 Route::post('/login', [UsersController::class, 'auth_login'])->middleware('guest');
 Route::post('/user/login', [UsersController::class, 'auth_login'])->middleware('guest');
 Route::post('/logout', [UsersController::class, 'logout'])->name('logout')->middleware('auth');
@@ -49,14 +49,14 @@ Route::get('/users', [UsersController::class, 'index'])->name('users')->middlewa
 
 
 //Produk guest
-Route::get('/user/dashboard', function () {
+Route::get('/dashboard', function () {
     // $posts = Post::with(['author', 'category'])->latest()->get();
     // $posts = Post::all();
     // return view('/user/dashboard', ['name' => 'Sandi Rp', 'title' => 'Blog', 'titles' => 'Halaman Blog', 'posts' => Post::filter(request(['search', 'category', 'author']))->latest()->paginate(10)->withQueryString()]);
     return view('/user/dashboard', ['produks' => produk::filter(request(['search', 'category']))->latest()->paginate()->withQueryString()]);
 })->name('dashboard');
 //Detail produk
-Route::get('/user/detail/{produk:slug}', function (Produk $produk) {
+Route::get('/detail/{produk:slug}', function (Produk $produk) {
     return view('user/detail', ['kontaks' => kontak::all(), 'produk' => $produk, 'produkKategori' => produk::inRandomOrder()->limit('4')->get()]);
 });
 
@@ -73,7 +73,7 @@ Route::get('/user/addproduk', function () {
 })->name('cobaNambah')->middleware('auth');
 
 //Page Profil
-Route::get('/user/profilperusahaan', function () {
+Route::get('/profilperusahaan', function () {
     return view('user/profilPerusahaan', ['profil' => profil::first()]);
 })->name('profilPerusahaan');
 Route::get('/profil/edit', function () {

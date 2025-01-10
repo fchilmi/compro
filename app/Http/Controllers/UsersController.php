@@ -69,7 +69,7 @@ class UsersController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
-            return redirect()->intended('user/dashboard');
+            return redirect()->intended('dashboard');
         } else {
             return redirect()->back()->withErrors('Username atau Password Tidak Sesuai')->withInput();
         }

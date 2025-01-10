@@ -147,7 +147,7 @@ class produkController extends Controller
         // Check if validation fails
         if ($validGbr->fails()) {
             // Redirect back with input and error messages
-            return redirect()->route('produkHome')->with('gagal', 'Produk gagal ditambahkan, periksa ulang tipe file');
+            return redirect()->route('produkHome')->with('gagal', 'Produk gagal diupdate, periksa ulang tipe file');
         }
 
         // Proses update gambar
