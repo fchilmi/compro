@@ -2,7 +2,7 @@
     <x-slot:title>Data Users</x-slot:title>
     <x-slot:titles>Data Users</x-slot:titles>
 
-    <section class="py-8 px-8 md:py-16 md:justify-items-center dark:bg-gray-900 antialiased">
+    <section class="py-8 px-8 md:py-16 md:justify-items-center dark:bg-gray-900 antialiased min-h-full">
         <div class="md:w-8/12 bg-black px-8 py-8 rounded-xl">
             <button id="AddUserButton" data-modal-target="AddUserModal" data-modal-toggle="AddUserModal"
                 class="md:item-right sm:justify-items-center px-4 py-2 mb-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">

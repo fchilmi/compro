@@ -2,7 +2,7 @@
     <x-slot:title>Kontak CS Perusahaan</x-slot:title>
     <x-slot:titles>Kontak CS Perusahaan</x-slot:titles>
 
-    <section class="antialiased dark:bg-gray-900 px-8 py-8">
+    <section class="antialiased dark:bg-gray-900 px-8 py-8 min-h-full">
         <div class="w-full bg-black px-8 py-8 rounded-xl">
             <div class="mb-6 xs:justify-items-center xs:mx-auto">
                 <button id="defaultModalButton" data-modal-target="addKontakModal" data-modal-toggle="addKontakModal"

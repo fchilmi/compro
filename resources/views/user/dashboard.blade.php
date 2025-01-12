@@ -2,7 +2,7 @@
     <x-slot:title>Dashboard</x-slot:title>
     <x-slot:titles class="mb-4">Dashboard</x-slot:titles>
 
-    <section class="antialiased dark:bg-gray-900 pb-10">
+    <section class="antialiased dark:bg-gray-900 pb-10 min-h-full">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
             <!-- Heading & Filters -->
             <div class="py-4 px-4 mx-auto max-w-screen-xl lg:px-6">

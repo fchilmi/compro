@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>Edit Profil</x-slot:title>
     <x-slot:titles>Edit Profil</x-slot:titles>
-    <section>
+    <section class="min-h-full">
         <div class="grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-2 px-8 py-6">
             <div class="py-8 px-4 h-auto max-w-full lg:py-1 rounded-lg" style="background-color: #2b2b36">
                 <form action="{{ route('updateProfil', $profil->id) }}" method="POST">

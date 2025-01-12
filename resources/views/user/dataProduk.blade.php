@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>Data Produk </x-slot:title>
     <x-slot:titles>Data Produk</x-slot:titles>
-    <section class="text-white">
+    <section class="text-white min-h-full">
         <div class="mx-auto max-w-7xl px-8 py-6 sm:px-6 lg:px-8">
 
             <!--Card-->

@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>Edit Produk</x-slot:title>
     <x-slot:titles>Edit Produk</x-slot:titles>
-    <section>
+    <section class="min-h-full">
         <div class="grid grif-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-1 px-8 py-6">
             <div class="py-8 px-4  h-auto max-w-full lg:py-1 rounded-lg" style="background-color: #2b2b36">
                 <h1 class="text-2xl font-semibold -tracking-tighter text-gray-200">Deskripsi Produk</h1>

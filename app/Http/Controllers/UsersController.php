@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
+use function PHPUnit\Framework\isNull;
+
 class UsersController extends Controller
 {
     public function index()
@@ -104,8 +106,9 @@ class UsersController extends Controller
             // Redirect back with input and error messages
             return redirect()->route('users')->with('gagal', 'User gagal diupdate, periksa ulang data');
         }
-        $password = $request->password;
+        $password = $request->password1;
         if (empty($password)) {
+            dd("tanpa password", $request->password1);
             $cari = User::find($id);
             $cari->update([
                 'name' => $request->nama,
@@ -113,6 +116,7 @@ class UsersController extends Controller
             ]);
         } else {
             $cari = User::find($id);
+            dd($password);
             $cari->update([
                 'name' => $request->nama,
                 'email' => $request->email,
