@@ -66,7 +66,7 @@ Route::post('/addProduk', [produkController::class, 'addProduks'])->name('produk
 Route::put('/updateProduk/{id}', [produkController::class, 'updateProduk'])->name('produkUpdate')->middleware('auth');
 Route::put('/updateProdukGambar/{id}', [produkController::class, 'updateProdukGambar'])->name('produkUpdateGambar')->middleware('auth');
 Route::delete('/produk/{id}/destroy', [produkController::class, 'destroy'])->name('produkDestroy')->middleware('auth');
-Route::get('/produk/{id}/edit', [produkController::class, 'edit'])->name('produksEdit')->middleware('auth');
+Route::get('/produk/{produk:slug}', [produkController::class, 'edit'])->where('produk', '[a-zA-Z0-9_-]+')->name('produksEdit')->middleware('auth');
 
 Route::get('/user/addproduk', function () {
     return view('user/addProduk', ['produks' => produk::all()]);

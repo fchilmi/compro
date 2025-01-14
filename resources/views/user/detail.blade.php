@@ -20,6 +20,13 @@
                                         alt="Gambar {{ $produk->namaProduk }}">
                                 </div>
                             @endforeach
+                            @if ($produk->namaVideo)
+                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                    <video class="w-full" autoplay loop muted playsinline>
+                                        <source src="/uploads/{{ $produk->namaVideo }}" type="video/mp4">
+                                    </video>
+                                </div>
+                            @endif
                         </div>
                         <!-- Slider controls -->
                         <button type="button"
@@ -101,7 +108,7 @@
                         <div class="rounded-lg border border-gray-200  p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
                             style="background-color: #2b2b36">
                             <div class="h-56 w-full">
-                                <a href="/user/detail/{{ $pk->slug }}">
+                                <a href="/detail/{{ $pk->slug }}">
                                     <img class="mx-auto h-full dark:hidden" src="/uploads/{{ $pk->namaGambar }}"
                                         alt="Gambar {{ $pk->namaProduk }}" />
                                     {{-- <img class="mx-auto hidden h-full dark:block"
@@ -113,14 +120,14 @@
                                 <div class="mb-4 flex items-center justify-between gap-4">
                                 </div>
 
-                                <a href="/user/detail/{{ $pk->slug }}"
+                                <a href="/detail/{{ $pk->slug }}"
                                     class="text-lg font-semibold leading-tight text-white hover:underline dark:text-white">
                                     {{ $pk->namaProduk }}</a>
 
                                 <div class="my-8 flex items-center justify-between gap-4">
                                     <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">
                                     </p>
-                                    <a href="/user/detail/{{ $pk->slug }}"
+                                    <a href="/detail/{{ $pk->slug }}"
                                         class="inline-flex items-center rounded-lg bg-blue-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4  focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Detail
                                     </a>
