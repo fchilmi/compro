@@ -74,14 +74,6 @@
                                                 alt="" class="w-6 -mb-1 opacity-40 hover:opacity-100">
                                         </button>
                                     </div>
-                                    <div>
-                                        <label class="inline-flex items-center cursor-pointer"><input
-                                                id="customCheckLogin" type="checkbox"
-                                                class="form-checkbox border-0 rounded text-gray-800 ml-1 w-5 h-5"
-                                                style="transition: all 0.15s ease 0s;" /><span
-                                                class="ml-2 text-sm font-semibold text-white">Remember me</span>
-                                        </label>
-                                    </div>
                                     <div class="text-center mt-6">
                                         <button type="submit"
                                             class="bg-blue-400 text-white active:bg-blue-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full hover:bg-blue-800"
@@ -107,12 +99,6 @@
                 passIn.getAttribute('type') ===
                 'password' ? 'text' : 'password';
             passIn.setAttribute('type', type);
-        });
-        const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            loginForm.reset(); // Reset the form
-            alert('Form submitted');
         });
     });
 </script>

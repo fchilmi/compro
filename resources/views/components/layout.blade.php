@@ -166,6 +166,39 @@
         <main style="background-color:
         #1e1e28">
     {{ $slot }}
+    <button id="back-to-top" class="fixed bottom-10 right-10 bg-white text-white p-2 rounded-full hidden">
+        <svg class="w-[32px] h-[32px] text-gray-800 dark:text-white" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 6v13m0-13 4 4m-4-4-4 4" />
+        </svg>
+    </button>
+
+    <script>
+        // Show or hide the button
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        // Scroll to top when button is clicked
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        document.getElementById('kontak').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+    </script>
     </main>
     <x-footer></x-footer>
     </div>

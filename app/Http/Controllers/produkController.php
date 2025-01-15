@@ -38,8 +38,10 @@ class produkController extends Controller
         $data = [
             'hasilProduk' => produk::find($id),
             'hasilGambar' => Gambar::where('idProduk', $id)->get(),
+            'hasilVideo' => Produk::where('id', $id)->get(),
             'file'  => count(Gambar::where('idProduk', $id)->get())
         ];
+        // dd($data);
 
         return view('/user/editProduk', $data);
     }
@@ -136,12 +138,11 @@ class produkController extends Controller
     {
         $produk = produk::find($id);
         $gambarLama = Gambar::where('idProduk', $id)->get();
-        // dd($gambarLama[0]);
         // Validasi input gambar jika ada
         $validGbr = Validator::make($request->all(), [
             'produkImg1' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:2560',
             'produkImg2' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:2560',
-            'produkImg3' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:2560'
+            'produkImg3' => 'nullable|mimetypes:video/mp4,video/mkv|max:10240'
         ]);
 
         // Check if validation fails
@@ -193,9 +194,9 @@ class produkController extends Controller
 
         if ($request->hasFile('produkImg3')) {
             // Hapus gambar lama jika ada
-            if (isset($gambarLama[2])) {
+            if (isset($produk->namaVideo)) {
                 // Storage::delete(public_path('uploads') . '/' . $gambarLama[2]->namaGambar);
-                File::delete(public_path('uploads/' . $gambarLama[2]->namaGambar));
+                File::delete(public_path('uploads/' . $produk->namaVideo));
             }
             // Upload gambar baru
             $file3 = $request->file('produkImg3');
@@ -203,11 +204,11 @@ class produkController extends Controller
             $file3->move(public_path('uploads'), $namaGambar3);
 
             // Update database
-            if (isset($gambarLama[2])) {
-                $gambarLama[2]->namaGambar = $namaGambar3;
-                $gambarLama[2]->save();
+            if (isset($produk->namaVideo)) {
+                $produk->namaVideo = $namaGambar3;
+                $produk->save();
             } else {
-                Gambar::create(['idProduk' => $id, 'namaGambar' => $namaGambar3]);
+                $produk->update(['namaVideo' => $namaGambar3]);
             }
         }
 

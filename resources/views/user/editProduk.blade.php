@@ -60,7 +60,7 @@
 
             {{-- UPDATE GAMBAR --}}
             <div class="py-8 px-4 h-auto max-w-full lg:py-1 rounded-lg" style="background-color: #2b2b36">
-                <h1 class="text-2xl font-semibold -tracking-tighter text-gray-200">Gambar Produk</h1>
+                <h1 class="text-2xl font-semibold -tracking-tighter text-gray-200">Update Gambar / Video Produk</h1>
                 <hr class="border-gray-400 mt-2 mb-6" />
                 <form action="{{ route('produkUpdateGambar', $hasilProduk->id) }}" method="POST"
                     enctype="multipart/form-data">
@@ -82,17 +82,6 @@
                                 <img width="100" height="100"
                                     src="https://img.icons8.com/ios-filled/100/no-image.png" alt="no-image" />
                             </div>
-                        @elseif ($file == 2)
-                            @foreach ($hasilGambar as $hg)
-                                <div class="w-full h-56 bg-gray-50">
-                                    <img src="/uploads/{{ $hg->namaGambar }}" alt=""
-                                        class="mx-auto h-full bg-transparent">
-                                </div>
-                            @endforeach
-                            <div class="flex  justify-center items-center">
-                                <img width="100" height="100"
-                                    src="https://img.icons8.com/ios-filled/100/no-image.png" alt="no-image" />
-                            </div>
                         @else
                             @foreach ($hasilGambar as $hg)
                                 <div class="w-full h-56 bg-gray-50">
@@ -100,21 +89,43 @@
                                         class="mx-auto h-full bg-transparent">
                                 </div>
                             @endforeach
+                            {{-- <div class="flex  justify-center items-center">
+                                <img width="100" height="100"
+                                    src="https://img.icons8.com/ios-filled/100/no-image.png" alt="no-image" />
+                            </div> --}}
                         @endif
+                        {{-- @else
+                            @foreach ($hasilGambar as $hg) --}}
+                        @if ($hasilVideo[0]->namaVideo != null)
+                            <div class="w-full h-56 bg-transparent">
+                                <video class="mx-auto h-full bg-transparent" controls muted playsinline>
+                                    <source src="/uploads/{{ $hasilVideo[0]->namaVideo }}" type="video/mp4">
+                                </video>
+                            </div>
+                        @else
+                            <div class="flex justify-center items-center">
+                                <img width="100" height="100"
+                                    src="https://img.icons8.com/ios-filled/100/no-image.png" alt="no-image" />
+                            </div>
+                        @endif
+                        {{-- @endforeach --}}
+
                         <div class="flex justify-center items-center">
                             <input
                                 class="block mt-12 w-70 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="files1" type="file" name="produkImg1">
+                                id="files1" type="file" name="produkImg1"
+                                accept="image/jpg,image/png,image/jpeg,image/webp">
                         </div>
                         <div class="flex justify-center items-center">
                             <input
                                 class="block mt-12 w-70 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="files2" type="file" name="produkImg2">
+                                id="files2" type="file" name="produkImg2"
+                                accept="image/jpg,image/png,image/jpeg,image/webp">
                         </div>
                         <div class="flex justify-center items-center">
                             <input
                                 class="block mt-12 w-70 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                id="files3" type="file" name="produkImg3">
+                                id="files3" type="file" name="produkImg3" accept="video/*">
                         </div>
                     </div>
                     <div class="flex justify-end mt-12 mr-20">

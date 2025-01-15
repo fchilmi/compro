@@ -165,7 +165,13 @@
                                                     value=""
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             </div>
-
+                                            <div class="mb-2">
+                                                <input type="checkbox" id="show-passwords"
+                                                    onclick="togglePasswordVisibility()">
+                                                <label for="show-passwords"
+                                                    class="text-sm font-medium text-gray-900 dark:text-white">Tampilkan
+                                                    Password</label>
+                                            </div>
                                         </div>
                                         <div class="flex items-center space-x-4">
                                             <button type="submit"
@@ -261,4 +267,17 @@
             });
         </script>
     @endif
+    <script>
+        function togglePasswordVisibility() {
+            var password1 = document.getElementById('password1');
+            var password2 = document.getElementById('password2');
+            if (password1.type === 'password') {
+                password1.type = 'text';
+                password2.type = 'text';
+            } else {
+                password1.type = 'password';
+                password2.type = 'password';
+            }
+        }
+    </script>
 </x-layout>

@@ -11,8 +11,11 @@
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <x-nav-link href='/dashboard' :active="request()->is('user/dashboard')">Produk</x-nav-link>
-                        <x-nav-link href='/profilperusahaan' :active="request()->is('user/profilperusahaan')">Profil Perusahaan</x-nav-link>
+                        <x-nav-link href='/dashboard' :active="request()->is('dashboard')">Produk</x-nav-link>
+                        <x-nav-link href='/profilperusahaan' :active="request()->is('profilperusahaan')">Profil Perusahaan</x-nav-link>
+                        <button
+                            class="block rounded-md px-3 py-2 text-sm font-medium hover:underline text-gray-800 hover:bg-gray-700 hover:text-white"
+                            id='kontak'>Kontak</button>
                         @auth
                             <x-nav-link> <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
                                     class="flex items-center justify-between w-full text-gray-800 hover:bg-gray-700 md:hover:bg-gray-700 md:border-0 md:hover:text-white md:p-0 md:w-auto">Menu
