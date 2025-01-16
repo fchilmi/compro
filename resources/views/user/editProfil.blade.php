@@ -65,7 +65,7 @@
                                         d="m6 6 12 12m3-6a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
                             @else
-                                <img src="/uploads/{{ $profil->GambarPerusahaan1 }}" alt="gambar2" width="50%">
+                                <img src="/img/{{ $profil->GambarPerusahaan1 }}" alt="gambar2" width="50%">
                             @endif
                         </div>
                         <div>
@@ -84,7 +84,7 @@
                                         d="m6 6 12 12m3-6a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
                             @else
-                                <img src="/uploads/{{ $profil->GambarPerusahaan2 }}" alt="gambar2" width="50%">
+                                <img src="/img/{{ $profil->GambarPerusahaan2 }}" alt="gambar2" width="50%">
                             @endif
                         </div>
                         <div>
@@ -103,7 +103,7 @@
                                         d="m6 6 12 12m3-6a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
                             @else
-                                <img src="/uploads/{{ $profil->GambarPerusahaan3 }}" alt="gambar2" width="50%">
+                                <img src="/img/{{ $profil->GambarPerusahaan3 }}" alt="gambar2" width="50%">
                             @endif
                         </div>
                         <div>

@@ -34,9 +34,9 @@ class kontaksController extends Controller
     {
         $gambar = profil::first();
         $validator = Validator::make($request->all(), [
-            'files1' => File::image()->max(5120),
-            'files2' => File::image()->max(5120),
-            'files3' => File::image()->max(5120)
+            'files1' => 'mimetypes:image/jpeg,image/jpg,image/png|max:5120',
+            'files2' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:5120',
+            'files3' => 'nullable|mimetypes:image/jpeg,image/jpg,image/png|max:5120'
         ]);
         if ($validator->fails()) {
             // Redirect back with input and error messages
@@ -47,13 +47,12 @@ class kontaksController extends Controller
         if ($request->hasFile('files1')) {
             // Hapus gambar lama jika ada
             if (isset($gambar->GambarPerusahaan1)) {
-                File::delete('uploads/' . $gambar->GambarPerusahaan1);
+                File::delete('img/' . $gambar->GambarPerusahaan1);
             }
             // Upload gambar baru
             $file1 = $request->file('files1');
             $namaGambar1 = Str::random(10) . $file1->getClientOriginalName();
-            $file1->move(public_path('uploads'), $namaGambar1);
-
+            $file1->move(public_path('img'), $namaGambar1);
             // Update database
             if (isset($gambar->GambarPerusahaan1)) {
                 $gambar->GambarPerusahaan1 = $namaGambar1;
@@ -67,12 +66,12 @@ class kontaksController extends Controller
         if ($request->hasFile('files2')) {
             // Hapus gambar lama jika ada
             if (isset($gambar->GambarPerusahaan2)) {
-                File::delete('uploads/' . $gambar->GambarPerusahaan2);
+                File::delete('img/' . $gambar->GambarPerusahaan2);
             }
             // Upload gambar baru
             $file2 = $request->file('files2');
             $namaGambar2 = Str::random(10) . $file2->getClientOriginalName();
-            $file2->move(public_path('uploads'), $namaGambar2);
+            $file2->move(public_path('img'), $namaGambar2);
 
             // Update database
             if (isset($gambar->GambarPerusahaan2)) {
@@ -87,12 +86,12 @@ class kontaksController extends Controller
         if ($request->hasFile('files3')) {
             // Hapus gambar lama jika ada
             if (isset($gambar->GambarPerusahaan3)) {
-                File::delete('uploads/' . $gambar->GambarPerusahaan3);
+                File::delete('img/' . $gambar->GambarPerusahaan3);
             }
             // Upload gambar baru
             $file3 = $request->file('files3');
             $namaGambar3 = Str::random(10) . $file3->getClientOriginalName();
-            $file3->move(public_path('uploads'), $namaGambar3);
+            $file3->move(public_path('img'), $namaGambar3);
 
             // Update database
             if (isset($gambar->GambarPerusahaan3)) {

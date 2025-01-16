@@ -90,10 +90,11 @@
                     </div>
 
                     <hr class="my-4 md:my-8 border-gray-300 dark:border-gray-200" />
-
-                    <p class="mb-6 text-gray-300 dark:text-gray-400">
-                        {!! nl2br(e($produk->deskripsiProduk)) !!}
-                    </p>
+                    <div class="overflow-y-auto max-h-48 p-4">
+                        <p class="mb-6 text-gray-300 dark:text-gray-400">
+                            {!! nl2br(e($produk->deskripsiProduk)) !!}
+                        </p>
+                    </div>
                     {{-- <p>
                                 {{ Str::of($produk->deskripsiProduk)->newLine()->append($produk->deskripsiProduk) }}
                             </p> --}}

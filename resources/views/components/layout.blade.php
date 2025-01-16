@@ -150,7 +150,7 @@
             <div class="flex h-16 items-center justify-between mx-auto max-w-7xl px-4 py-2 mt-16 sm:px-6 lg:px-8">
                 <div class="flex items-center">
                     <div class="flex items-baseline">
-                        <h1 class="text-3xl font-bold tracking-tight">{{ $profile[0]->namaPerusahaan }}</h1>
+                        <h1 class="text-3xl sm:text-sm font-bold tracking-tight">{{ $profile[0]->namaPerusahaan }}</h1>
                     </div>
                 </div>
                 @auth
@@ -193,6 +193,12 @@
             });
         });
         document.getElementById('kontak').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+        document.getElementById('kontak2').addEventListener('click', function() {
             window.scrollTo({
                 top: document.body.scrollHeight,
                 behavior: 'smooth'

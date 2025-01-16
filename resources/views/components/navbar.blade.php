@@ -128,6 +128,9 @@
                 <p class="text-white">Profil
                     Perusahaan</p>
             </x-nav-link>
+            <button
+                class="block rounded-md px-3 py-2 text-sm font-medium hover:underline text-white hover:bg-gray-700 hover:text-white"
+                id='kontak2'>Kontak</button>
             @auth
                 <button id="dropdownNavbarLink"
                     data-dropdown-toggle="dropdownNavbar2"data-dropdown-placement="right-start"
