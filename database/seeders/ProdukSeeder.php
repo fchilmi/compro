@@ -25,14 +25,14 @@ class produkSeeder extends Seeder
             'hargaProduk'       => '70000',
             'deskripsiProduk'   => 'Filler Untuk CrossFlow Cooling Tower merupakan part yang digunakan dalam mesin Cooling Tower yang berfungsi sebagai filter air. Dapat digunakan untuk berbagai merk Cooling Tower seperti Kuken, Liang Chi, dan lainnya. Menggunakan media jenis film PolyVinyl Chloride (PVC) bentuk vakum adalah pilihan hemat biaya yang sangat baik untuk Cooling Tower Anda.
 
-Ketebalan standar untuk filler ini 12 mil (0,30mm sebelum dibentuk). Ketebalan lain juga tersedia berdasarkan permintaan. Filler ini mudah diikat ke dalam kemasan menggunakan perekat PVC. 
+Ketebalan standar untuk filler ini 12 mil (0,30mm sebelum dibentuk). Ketebalan lain juga tersedia berdasarkan permintaan. Filler ini mudah diikat ke dalam kemasan menggunakan perekat PVC.
 
-Spesifikasi 
+Spesifikasi
 Dimensi : 1000 mm x 1000 mm
                   1000 mm x 2000 mm
 Tebal      : 0.35
 Warna    : Hitam',
-            'namaGambar'   => 'EBcSVhdRhifotoweb-Nihon Spindle.png',
+            'namaGambar'   => '3QKpLT8ZcCfotoweb-Marley.png',
             'category_id' => '3'
         ]);
         produk::create([
@@ -41,11 +41,11 @@ Warna    : Hitam',
             'hargaProduk'       => '70000',
             'deskripsiProduk'   => 'Filler Untuk CrossFlow Cooling Tower merupakan part yang digunakan dalam mesin Cooling Tower yang berfungsi sebagai filter air. Dapat digunakan untuk berbagai merk Cooling Tower seperti Kuken, Liang Chi, dan lainnya. Menggunakan media jenis film PolyVinyl Chloride (PVC) bentuk vakum adalah pilihan hemat biaya yang sangat baik untuk Cooling Tower Anda.
 
-Spesifikasi : 
+Spesifikasi :
 Dimensi : 950 mm x 950 mm
 Tebal      : 0.35
 Warna    : Abu - Abu',
-            'namaGambar'   => 'DxLvPXyWBsfotoweb-Shinwa.png',
+            'namaGambar'   => 'gtfTjDBNw6fotoweb-Liang Chi.png',
             'category_id' => '3'
         ]);
     }

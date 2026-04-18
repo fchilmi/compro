@@ -14,11 +14,11 @@ class GambarSeeder extends Seeder
     public function run(): void
     {
         Gambar::create([
-            'namaGambar' => 'EBcSVhdRhifotoweb-Nihon Spindle.png',
+            'namaGambar' => '3QKpLT8ZcCfotoweb-Marley.png',
             'idProduk' => '1',
         ]);
         Gambar::create([
-            'namaGambar' => 'DxLvPXyWBsfotoweb-Shinwa.png',
+            'namaGambar' => 'gtfTjDBNw6fotoweb-Liang Chi.png',
             'idProduk' => '2',
         ]);
     }
